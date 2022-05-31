@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('content')
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
