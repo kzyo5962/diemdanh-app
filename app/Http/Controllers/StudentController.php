@@ -15,7 +15,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return view('students.index');
+        $students = Student::orderBy('id', 'desc')->get();
+        return view('students.index', [
+            'students' => $students,
+        ]);
     }
 
     /**

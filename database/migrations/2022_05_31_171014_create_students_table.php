@@ -14,11 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->fullName();
-            $table->phoneNumber();
-            $table->email();
-            
+            $table->increments('id');
+            $table->string('fullName');
+            $table->string('birthDt');
+            $table->string('phoneNumber');
+            $table->string('email');
+            $table->enum('status', ['Đang theo học', 'Đình chỉ', 'Thôi học'])->default('Đang theo học');
+            $table->integer('class_id')->unsigned();
+            $table->foreign('class_id')->references('id')->on('classrooms');
             $table->timestamps();
         });
     }
