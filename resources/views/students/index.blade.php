@@ -1,8 +1,11 @@
 @extends('layout.main')
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Quản lý Lớp học</h1>
-
+        <h1 class="h3 mb-3 text-gray-800">Quản lý Học viên</h1>
+        <a class="btn btn-success mb-4" href="{{ route('students.create') }}">
+            <span class="icon text-white-100"><i class="fas fa-plus"></i></span>
+            Tạo học viên mới
+        </a>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
@@ -27,7 +30,15 @@
                                     <td>{{ $student->birthDt }}</td>
                                     <td>{{ $student->phoneNumber }}</td>
                                     <td>{{ $student->email }}</td>
-                                    <td>{{ $student->status }}</td>
+                                    <td>
+                                        @if ($student->status == 'Đang theo học')
+                                            <div class="btn btn-info">{{ $student->status }}</div>
+                                        @elseif ($student->status == 'Đình chỉ')
+                                            <div class="btn btn-warning">{{ $student->status }}</div>
+                                        @else
+                                            <div class="btn btn-danger">{{ $student->status }}</div>
+                                        @endif
+                                    </td>
                                     <td>{{ $student->class_id }}</td>
                                 </tr>
                             @endforeach
