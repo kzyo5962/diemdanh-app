@@ -12,28 +12,72 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="text-dark" for="fullName">Họ tên</label>
-                                    <input type="text" name="fullName" class="form-control form-control-user"
-                                        placeholder="Điền đầy đủ họ tên">
+                                    <label class="text-dark required" for="fullName">Họ tên</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-control"
+                                        placeholder="Điền đầy đủ họ tên" value={{ old('fullName') }}>
                                     @error('fullName')
-                                        <small class="d-block text-danger mb-2">{{ $message }}</small>
+                                        <small class="d-block text-danger">{{ $message }}</small>
                                     @enderror
-
-
-                                    <label class="text-dark" for="birthDt">Ngày sinh</label>
-                                    <input type="date" name="birthDt" class="form-control form-control-user">
-                                    <p class="  text-danger">{{ $errors->first('birthDt') }}</p>
-
-                                    {{-- <label class="text-dark" for="DiaChi">SDT</label>
-                                    <input type="text" name="SDT" class="form-control form-control-user"
-                                        id="exampleFirstName" placeholder="Điền số điện thoại">
-                                    <p class="text-danger">{{ $errors->first('SDT') }}</p> --}}
                                 </div>
-                                <button class="btn btn-primary mt-2">Thêm mới</button>
-                            </div>
-                            <div class="col-lg-6">
+
+                                <div class="form-group">
+                                    <label class="text-dark required" for="birthDt">Ngày sinh</label>
+                                    <input type="date" id="birthDt" name="birthDt" class="form-control"
+                                        value={{ old('birthDt') }}>
+                                    @error('birthDt')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="text-dark required" for="phoneNumber">Số điện thoại</label>
+                                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"
+                                        placeholder="Điền số điện thoại" value={{ old('phoneNumber') }}>
+                                    @error('phoneNumber')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+
                             </div>
 
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="text-dark required" for="class_id">Chọn lớp</label>
+                                    <select id="class_id" class="form-control" name="class_id">
+
+                                        <option value="" {{ old('class_id') != '' ? '' : 'selected' }}>NO SELECT
+                                        </option>
+
+                                        @foreach ($classrooms as $classroom)
+                                            <option value="{{ $classroom->id }}"
+                                                {{ old('class_id') == $classroom->id ? 'selected' : '' }}>
+                                                {{ $classroom->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('class_id')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="text-dark required" for="email">Email</label>
+                                    <input type="text" id="email" name="email" class="form-control"
+                                        placeholder="Điền địa chỉ email" value={{ old('phoneNumber') }}>
+                                    @error('email')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary mt-2">Thêm mới</button>
+                            </div>
                         </div>
                     </form>
                 </div>

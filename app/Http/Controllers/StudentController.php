@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Classroom;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 
@@ -28,7 +29,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $classrooms = Classroom::all();
+        return view('students.create', [
+            'classrooms' => $classrooms
+        ]);
     }
 
     /**
@@ -39,7 +43,7 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-
+        dd($request);
     }
 
     /**

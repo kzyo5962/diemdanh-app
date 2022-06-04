@@ -1,0 +1,9 @@
+label::after {
+    content: ":";
+}
+
+.required::before {
+    content: "* ";
+    color: red;
+}
+
