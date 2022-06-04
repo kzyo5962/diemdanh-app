@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\Classroom;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class StudentController extends Controller
 {
@@ -17,6 +18,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::orderBy('id', 'desc')->get();
+        Toastr::success('Hello', 'Success');
         return view('students.index', [
             'students' => $students,
         ]);
