@@ -9,7 +9,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -19,6 +19,7 @@
                                 <th>Email</th>
                                 <th>Trạng thái</th>
                                 <th>Lớp học</th>
+                                <th>Công cụ</th>
                             </tr>
                         </thead>
 
@@ -39,7 +40,19 @@
                                             <div class="btn btn-danger">{{ $student->status }}</div>
                                         @endif
                                     </td>
-                                    <td>{{ $student->class_id }}</td>
+                                    <td>{{ $student->classroom->name }}</td>
+                                    <td>
+                                        <a href="" data-toggle="tooltip" title="Cảnh báo đình chỉ"
+                                            class="btn btn-warning"><i class="fas fas fa-exclamation-triangle"></i></a>
+                                        <a href="" data-toggle="tooltip" title="Quyết định thôi học"
+                                            class="btn btn-secondary"><i class="fas fas fa-minus-circle"></i></a>
+                                        <a href="" data-toggle="tooltip" title="Chỉnh sửa" class="btn btn-primary"><i
+                                                class="fas fa-pen"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#deletedStudentModal"
+                                            data-toggle="tooltip" title="Xóa {{ $student->id }}"
+                                            class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                        @include('students.delete-modal')
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -52,3 +65,16 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            $('#dataTable1').DataTable({
+                order: [
+                    [0, 'desc']
+                ],
+            });
+        });
+    </script>
+@endpush

@@ -6,7 +6,7 @@ use App\Http\Controllers\ClassroomController;
 
 Route::get('/', function () {
     return view('layout.main');
-});
+})->name('/');
 
 Route::resource('/students', StudentController::class);
 Route::resource('/classrooms', ClassroomController::class);

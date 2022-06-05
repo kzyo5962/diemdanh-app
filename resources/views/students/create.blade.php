@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <label class="text-dark required" for="email">Email</label>
                                     <input type="text" id="email" name="email" class="form-control"
-                                        placeholder="Điền địa chỉ email" value={{ old('phoneNumber') }}>
+                                        placeholder="Điền địa chỉ email" value={{ old('email') }}>
                                     @error('email')
                                         <small class="d-block text-danger">{{ $message }}</small>
                                     @enderror

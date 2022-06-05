@@ -26,7 +26,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'fullName' => 'required',
             'birthDt' => 'required|date',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:students',
             'phoneNumber' => 'required|numeric',
             'class_id' => 'required',
         ];
@@ -41,6 +41,7 @@ class StoreStudentRequest extends FormRequest
 
             'email.required' => 'Email không được phép để trống.',
             'email.email' => 'Email sai định dạng.',
+            'email.unique' => 'Email đã tồn tại.',
 
             'phoneNumber.required' => 'SĐT không được phép để trống.',
             'phoneNumber.numeric' => 'SĐT sai định dạng.',

@@ -17,8 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::orderBy('id', 'desc')->get();
-        Toastr::success('Hello', 'Success');
+        $students = Student::with('classroom')->orderBy('id', 'asc')->get();
         return view('students.index', [
             'students' => $students,
         ]);
@@ -45,7 +44,15 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        dd($request);
+        $student = new Student();
+        $student->fullName = $request->fullName;
+        $student->birthDt = $request->birthDt;
+        $student->phoneNumber = $request->phoneNumber;
+        $student->email = $request->email;
+        $student->class_id = $request->class_id;
+        $student->save();
+        Toastr::success('Tạo học viên mới thành công', 'Success');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -90,6 +97,9 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $message = "Xóa học viên $student->fullName thành công";
+        $student->delete();
+        Toastr::success($message, 'Success');
+        return redirect()->route('students.index');
     }
 }
