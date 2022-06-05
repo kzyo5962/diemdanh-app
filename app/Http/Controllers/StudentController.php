@@ -74,7 +74,12 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        // dd($student->all());
+        $classrooms = Classroom::all();
+        return view('students.edit', [
+            'student' => $student,
+            'classrooms' => $classrooms
+        ]);
     }
 
     /**
@@ -86,7 +91,15 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        //
+        $student->fullName = $request->fullName;
+        $student->birthDt = $request->birthDt;
+        $student->phoneNumber = $request->phoneNumber;
+        $student->email = $request->email;
+        $student->class_id = $request->class_id;
+        $student->status = $request->status;
+        $student->update();
+        Toastr::success('Cập nhật học viên mới thành công', 'Success');
+        return redirect()->route('students.index');
     }
 
     /**

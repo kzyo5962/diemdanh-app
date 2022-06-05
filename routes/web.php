@@ -8,5 +8,5 @@ Route::get('/', function () {
     return view('layout.main');
 })->name('/');
 
-Route::resource('/students', StudentController::class);
-Route::resource('/classrooms', ClassroomController::class);
+Route::resource('/students', StudentController::class)->except(['show']);
+Route::resource('/classrooms', ClassroomController::class)->except(['show']);

@@ -46,7 +46,8 @@
                                             class="btn btn-warning"><i class="fas fas fa-exclamation-triangle"></i></a>
                                         <a href="" data-toggle="tooltip" title="Quyết định thôi học"
                                             class="btn btn-secondary"><i class="fas fas fa-minus-circle"></i></a>
-                                        <a href="" data-toggle="tooltip" title="Chỉnh sửa" class="btn btn-primary"><i
+                                        <a href="{{ route('students.edit', ['student' => $student]) }}"
+                                            data-toggle="tooltip" title="Chỉnh sửa" class="btn btn-primary"><i
                                                 class="fas fa-pen"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#deletedStudentModal"
                                             data-toggle="tooltip" title="Xóa {{ $student->id }}"
