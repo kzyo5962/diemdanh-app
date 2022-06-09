@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -33,24 +35,39 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4 text-uppercase">Đăng ký tài khoản</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action={{ route('store.account') }} method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        placeholder="Họ tên">
+                                        name="name" placeholder="Họ tên" value={{ old('name') }}>
+                                    @error('name')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Địa chỉ email">
+                                        name="email" placeholder="Địa chỉ email" value={{ old('email') }}>
+                                    @error('email')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-user" name="password"
+                                        id="exampleInputPassword" placeholder="Mật khẩu" value={{ old('password') }}>
+                                    @error('password')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Mật khẩu">
+                                        name="password_confirmation" id="exampleRepeatPassword"
+                                        placeholder="Mật khẩu xác nhận" value={{ old('password_confirmation') }}>
+
+                                    @error('password_confirmation')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleRepeatPassword" placeholder="Mật khẩu xác nhận">
-                                </div>
-                                <button type="submit" class=" btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Đăng ký
                                 </button>
                             </form>
@@ -84,6 +101,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 
 </body>
 

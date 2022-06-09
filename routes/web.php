@@ -13,5 +13,5 @@ Route::resource('/students', StudentController::class)->except(['show']);
 Route::resource('/classrooms', ClassroomController::class)->except(['show']);
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
-
 Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::post('/store-account', [UserController::class, 'store'])->name('store.account');
