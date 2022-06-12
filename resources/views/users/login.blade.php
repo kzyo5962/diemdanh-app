@@ -36,17 +36,31 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4 text-uppercase">Đăng nhập</h1>
                             </div>
-                            <form class="user" action="{{ route('login') }}" method="POST">
+
+                            @if ($errors->any() || Session::has('message'))
+                                <div class="alert alert-danger" role="alert">
+                                    <small class="d-block text-danger">{{ Session::get('message') }}</small>
+                                    @error('email')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                    @error('password')
+                                        <small class="d-block text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            @endif
+                            <form class="user" action="{{ route('authenticate') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                                        aria-describedby="emailHelp" placeholder="Email" value="{{ old('email') }}">
+                                        aria-describedby="emailHelp" placeholder="Email" name="email"
+                                        value="{{ old('email') }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Mật khẩu"
+                                        id="exampleInputPassword" placeholder="Mật khẩu" name="password"
                                         value="{{ old('password') }}">
                                 </div>
+
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" id="customCheck">

@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('students');
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fullName');
@@ -20,8 +21,7 @@ return new class extends Migration
             $table->string('phoneNumber');
             $table->string('email');
             $table->enum('status', ['Đang theo học', 'Đình chỉ', 'Thôi học'])->default('Đang theo học');
-            $table->integer('class_id')->unsigned();
-            $table->foreign('class_id')->references('id')->on('classrooms');
+            $table->integer('class_id');
             $table->timestamps();
         });
     }
