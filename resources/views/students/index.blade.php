@@ -6,6 +6,10 @@
             <span class="icon text-white-100"><i class="fas fa-plus"></i></span>
             Tạo học viên mới
         </a>
+        <a class="btn btn-success mb-4" href="{{ route('students.export') }}">
+            <span class="icon text-white-100"><i class="fas fa-table"></i></span>
+            Xuất file điểm danh
+        </a>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">

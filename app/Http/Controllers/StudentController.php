@@ -7,6 +7,10 @@ use App\Models\Classroom;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Brian2694\Toastr\Facades\Toastr;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\StudentsExport;
+use Carbon\Carbon;
+
 
 class StudentController extends Controller
 {
@@ -74,7 +78,6 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        // dd($student->all());
         $classrooms = Classroom::all();
         return view('students.edit', [
             'student' => $student,
@@ -114,5 +117,13 @@ class StudentController extends Controller
         $student->delete();
         Toastr::success($message, 'Success');
         return redirect()->route('students.index');
+    }
+
+    public function export()
+    {
+        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $prefix_excel = $dt->toDateString();
+
+        return Excel::download(new StudentsExport, $prefix_excel . '_diemdanh.xlsx');
     }
 }

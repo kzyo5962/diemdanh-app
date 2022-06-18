@@ -19,7 +19,9 @@ Route::middleware(['prevent.back.history'])->group(function () {
 
         Route::get('/', [UserController::class, 'index'])->name('/');
         Route::resource('/students', StudentController::class)->except(['show']);
+        Route::get('/students/export', [StudentController::class, 'export'])->name('students.export');
         Route::resource('/classrooms', ClassroomController::class)->except(['show']);
+
     });
 
 });
