@@ -121,9 +121,8 @@ class StudentController extends Controller
 
     public function export()
     {
-        $dt = Carbon::now('Asia/Ho_Chi_Minh');
+        $dt = Carbon::now();
         $prefix_excel = $dt->toDateString();
-
         return Excel::download(new StudentsExport, $prefix_excel . '_diemdanh.xlsx');
     }
 }
