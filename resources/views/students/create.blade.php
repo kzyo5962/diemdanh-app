@@ -1,11 +1,14 @@
 @extends('layout.main')
 @section('content')
     <div class="container-fluid">
-        <h4 class="mb-2 text-gray-800 text-capitalize">breadcrumbs</h4>
         <div class="card o-hidden border-0 shadow-lg my-4">
             <div class="card-body p-0">
                 <div class="p-5">
-                    <h1 class="mb-2 text-gray-800">Thêm học viên</h1>
+                    <h1 class="h3 mb-3 text-gray-800">Thêm
+                        @if ($subject)
+                            {{ $subject }}
+                        @endif
+                    </h1>
 
                     <form class="user" method="POST" action="{{ route('students.store') }}">
                         @csrf

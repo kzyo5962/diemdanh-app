@@ -42,6 +42,9 @@
 
                 @include('layout.topbar')
 
+                <div class="container-fluid">
+                    {{ Breadcrumbs::render() }}
+                </div>
                 @yield('content')
 
             </div>

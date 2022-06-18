@@ -10,10 +10,23 @@ use Brian2694\Toastr\Facades\Toastr;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StudentsExport;
 use Carbon\Carbon;
-
+use App\Constants\TitleConstant;
+use App\Constants\SubjectConstant;
 
 class StudentController extends Controller
 {
+    const TITLE = TitleConstant::TITLE_STUDENT;
+    const SUBJECT = SubjectConstant::SUBJECT_STUDENT;
+
+    protected $title;
+    protected $subject;
+
+    public function __construct()
+    {
+        $this->title = self::TITLE;
+        $this->subject = self::SUBJECT;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +37,7 @@ class StudentController extends Controller
         $students = Student::with('classroom')->orderBy('id', 'asc')->get();
         return view('students.index', [
             'students' => $students,
+            'title' => $this->title,
         ]);
     }
 
@@ -36,7 +50,8 @@ class StudentController extends Controller
     {
         $classrooms = Classroom::all();
         return view('students.create', [
-            'classrooms' => $classrooms
+            'classrooms' => $classrooms,
+            'subject' => $this->subject,
         ]);
     }
 
@@ -67,7 +82,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return $student;
     }
 
     /**
@@ -81,7 +96,8 @@ class StudentController extends Controller
         $classrooms = Classroom::all();
         return view('students.edit', [
             'student' => $student,
-            'classrooms' => $classrooms
+            'classrooms' => $classrooms,
+            'subject' => $this->subject,
         ]);
     }
 

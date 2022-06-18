@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-3 text-gray-800">Quản lý Học viên</h1>
+        <h1 class="h3 mb-3 text-gray-800">Quản lý học viên</h1>
         <a class="btn btn-success mb-4" href="{{ route('students.create') }}">
             <span class="icon text-white-100"><i class="fas fa-plus"></i></span>
             Tạo học viên mới
