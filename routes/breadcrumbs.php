@@ -32,11 +32,19 @@ Breadcrumbs::macro('resource', function (string $name, string $title, string $su
     });
 });
 
+Breadcrumbs::for('errors.404', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Page Not Found');
+});
 
 
 //define breadcrumbs listings
+Breadcrumbs::for('home', function (BreadcrumbTrail $trail): void {
+    $trail->push('Trang chủ', route('home'));
+});
 Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail): void {
-    $trail->push('Trang chủ', route('dashboard'));
+    $trail->parent('home');
+    $trail->push('Dashboard', route('dashboard'));
 });
 
 Breadcrumbs::resource('students', TitleConstant::TITLE_STUDENT, SubjectConstant::SUBJECT_STUDENT);

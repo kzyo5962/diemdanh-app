@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TeacherController;
 
 
 Route::middleware(['prevent.back.history'])->group(function () {
@@ -16,10 +17,11 @@ Route::middleware(['prevent.back.history'])->group(function () {
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-
-        Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+        Route::get('/', [UserController::class, 'index'])->name('home');
+        Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
         Route::resource('/students', StudentController::class);
         Route::get('/students/export', [StudentController::class, 'export'])->name('students.export');
-        Route::resource('/classrooms', ClassroomController::class)->except(['show']);
+        Route::resource('/classrooms', ClassroomController::class);
+        Route::resource('/teachers', TeacherController::class);
     });
 });

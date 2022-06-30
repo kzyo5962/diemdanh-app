@@ -34,10 +34,17 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ route('teachers.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Giảng viên</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('students.index') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>Học viên</span></a>
     </li>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
