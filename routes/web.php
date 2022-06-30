@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\RoleController;
 
 
 Route::middleware(['prevent.back.history'])->group(function () {
@@ -23,5 +25,7 @@ Route::middleware(['prevent.back.history'])->group(function () {
         Route::get('/students/export', [StudentController::class, 'export'])->name('students.export');
         Route::resource('/classrooms', ClassroomController::class);
         Route::resource('/teachers', TeacherController::class);
+        Route::resource('/admin', AdminController::class);
+        Route::resource('/roles', RoleController::class);
     });
 });

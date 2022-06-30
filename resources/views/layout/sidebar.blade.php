@@ -27,6 +27,17 @@
         Quản lý
     </div>
 
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('roles.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Vai trò</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Admin</span></a>
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('classrooms.index') }}">
             <i class="fas fa-fw fa-table"></i>
@@ -35,12 +46,12 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('teachers.index') }}">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-chalkboard-teacher"></i>
             <span>Giảng viên</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('students.index') }}">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-fw fa-users"></i>
             <span>Học viên</span></a>
     </li>
 

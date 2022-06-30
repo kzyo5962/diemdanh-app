@@ -15,7 +15,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        $admins = Admin::all();
+        return view('admin.index', [
+            'admins' => $admins,
+        ]);
     }
 
     /**
@@ -47,7 +50,9 @@ class AdminController extends Controller
      */
     public function show(Admin $admin)
     {
-        //
+        return view('admin.detail', [
+            'admin' => $admin
+        ]);
     }
 
     /**
