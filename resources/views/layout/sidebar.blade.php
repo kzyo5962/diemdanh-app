@@ -1,3 +1,9 @@
+@php
+const ADMIN = 1;
+const SUPERVISOR = 2;
+const TEACHER = 3;
+const STUDENT = 4;
+@endphp
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -33,11 +39,14 @@
             <i class="fas fa-fw fa-cog"></i>
             <span>Vai trò</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.index') }}">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Admin</span></a>
-    </li>
+
+    @if (auth()->user()->role_id == ADMIN)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.index') }}">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Admin</span></a>
+        </li>
+    @endif
     <li class="nav-item">
         <a class="nav-link" href="{{ route('classrooms.index') }}">
             <i class="fas fa-fw fa-table"></i>
@@ -53,6 +62,13 @@
         <a class="nav-link" href="{{ route('students.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Học viên</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('students.index') }}">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Điểm danh</span>
+        </a>
     </li>
 
 

@@ -32,6 +32,12 @@ Breadcrumbs::macro('resource', function (string $name, string $title, string $su
     });
 });
 
+
+Breadcrumbs::for('forbidden', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Forbidden');
+});
+
 Breadcrumbs::for('errors.404', function ($trail) {
     $trail->parent('home');
     $trail->push('Page Not Found');
