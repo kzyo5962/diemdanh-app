@@ -48,7 +48,7 @@
                                     @enderror
                                 </div>
                             @endif
-                            <form class="user" action="{{ route('authenticate') }}" method="POST">
+                            <form class="user" action="{{ route('auth.onLogin') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleInputEmail"
@@ -73,11 +73,11 @@
                                 </button>
                             </form>
                             <hr />
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Quên mật khẩu</a>
-                            </div>
+                            </div> --}}
                             <div class="text-center">
-                                <a class="small" href="{{ route('register') }}">Tạo tài khoản</a>
+                                <a class="small" href="{{ route('auth.register') }}">Tạo tài khoản</a>
                             </div>
                         </div>
                     </div>

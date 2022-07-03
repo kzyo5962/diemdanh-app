@@ -39,14 +39,15 @@ const STUDENT = 4;
             <i class="fas fa-fw fa-cog"></i>
             <span>Vai trò</span></a>
     </li>
-
-    @if (auth()->user()->role_id == ADMIN)
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.index') }}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Admin</span></a>
-        </li>
-    @endif
+    @auth
+        @if (auth()->user()->role_id == ADMIN)
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.index') }}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Admin</span></a>
+            </li>
+        @endif
+    @endauth
     <li class="nav-item">
         <a class="nav-link" href="{{ route('classrooms.index') }}">
             <i class="fas fa-fw fa-table"></i>

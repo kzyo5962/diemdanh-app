@@ -7,19 +7,24 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RoleController;
-
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 Route::middleware(['prevent.back.history'])->group(function () {
-    Route::get('/login', [UserController::class, 'login'])->name('login');
-    Route::get('/register', [UserController::class, 'register'])->name('register');
-    Route::post('/authenticate', [UserController::class, 'authenticate'])->name('authenticate');
-    Route::post('/save-account', [UserController::class, 'save'])->name('save.account');
-    Route::get('/forbidden', function () {
-        return view('errors.403');
-    })->name('forbidden');
+    Route::group([
+        'namespace' => 'Auth',
+        'as' => 'auth.'
+    ], function () {
+        Route::get('/login', [LoginController::class, 'login'])->name('login');
+        Route::post('/login', [LoginController::class, 'onLogin'])->name('onLogin');
+        Route::get('/forbidden', [LoginController::class, 'forbidden'])->name('forbidden');
+        Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+        Route::get('/register', [RegisterController::class, 'register'])->name('register');
+        Route::post('/register', [RegisterController::class, 'onRegister'])->name('onRegister');
+    });
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('/logout', [UserController::class, 'logout'])->name('logout');
         Route::get('/', [UserController::class, 'index'])->name('home');
         Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
         Route::resource('/students', StudentController::class);

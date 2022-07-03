@@ -35,7 +35,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4 text-uppercase">Đăng ký tài khoản</h1>
                             </div>
-                            <form class="user" action={{ route('save.account') }} method="POST">
+                            <form class="user" action={{ route('auth.onRegister') }} method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="exampleLastName"
@@ -74,11 +74,11 @@
 
                             <hr>
 
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Quên mật khẩu?</a>
-                            </div>
+                            </div> --}}
                             <div class="text-center">
-                                <a class="small" href="{{ route('login') }}">Đã có tài khoản? Chuyển sang
+                                <a class="small" href="{{ route('auth.login') }}">Đã có tài khoản? Chuyển sang
                                     đăng
                                     nhập</a>
                             </div>

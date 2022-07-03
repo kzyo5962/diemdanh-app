@@ -12,7 +12,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check() || Auth::user()->role_id != RoleConstant::ROLE_ADMIN) {
-            return redirect()->route('forbidden');
+            return redirect()->route('auth.forbidden');
         }
         return $next($request);
     }

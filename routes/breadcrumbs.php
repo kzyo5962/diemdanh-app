@@ -33,7 +33,7 @@ Breadcrumbs::macro('resource', function (string $name, string $title, string $su
 });
 
 
-Breadcrumbs::for('forbidden', function ($trail) {
+Breadcrumbs::for('auth.forbidden', function ($trail) {
     $trail->parent('home');
     $trail->push('Forbidden');
 });
