@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,14 +14,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fullName');
-            $table->string('phoneNumber');
-            $table->string('email');
-            $table->enum('status', ['Bình thường', 'Đình chỉ', 'Vắng', 'Thôi việc'])->default('Bình thường');
+            $table->string('name');
+
+            $table->integer('classroom_id')->unsigned();
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('teachers');
+
             $table->integer('supervisor_id')->unsigned();
             $table->foreign('supervisor_id')->references('id')->on('supervisors');
+
+            $table->date('from_date')->default(Carbon::now());
+            $table->date('to_date');
+
             $table->timestamps();
         });
     }
@@ -32,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('schedules');
     }
 };

@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('numOfLessons')->unsigned()->default(10);
+            $table->integer('subject_id')->unsigned();
+            $table->foreign('subject_id')->references('id')->on('subjects');
             $table->timestamps();
         });
     }
