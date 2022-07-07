@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('students');
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fullName');

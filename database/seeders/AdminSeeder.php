@@ -21,7 +21,9 @@ class AdminSeeder extends Seeder
             DB::table("admins")->insert([
                 "fullName" => $faker->name(),
                 "phoneNumber" => $faker->phoneNumber,
-                'email' => $faker->unique()->email
+                'email' => $faker->unique()->email,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

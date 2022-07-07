@@ -22,8 +22,10 @@ class TeacherSeeder extends Seeder
                 "fullName" => $faker->name(),
                 "phoneNumber" => $faker->phoneNumber,
                 'email' => $faker->unique()->email,
-                "status" => $faker->randomElement(['Bình thường', 'Đình chỉ', 'Vắng', 'Thôi việc']),
-                "supervisor_id" => $faker->numberBetween(1, 10)
+                "status" => $faker->randomElement(['Đang công tác', 'Đình chỉ', 'Vắng', 'Thôi việc']),
+                "supervisor_id" => $faker->numberBetween(1, 10),
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
     }

@@ -15,19 +15,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("roles")->insert([
-            [
-                'name' => 'Admin',
-            ],
-            [
-                'name' => 'Giáo vụ',
-            ],
-            [
-                'name' => 'Giảng viên',
-            ],
-            [
-                'name' => 'Học viên'
-            ]
-        ]);
+        $roles = ['Admin', 'Giáo vụ', 'Giảng viên', 'Học viên'];
+        foreach ($roles as $role) {
+            DB::table("roles")->insert([
+                'name' => $role,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

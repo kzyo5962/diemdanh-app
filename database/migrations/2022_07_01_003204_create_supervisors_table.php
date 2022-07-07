@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('fullName');
             $table->string('phoneNumber');
             $table->string('email');
-            $table->enum('status', ['Bình thường', 'Đình chỉ', 'Vắng', 'Thôi việc'])->default('Bình thường');
+            $table->enum('status', ['Đang công tác', 'Đình chỉ', 'Vắng', 'Thôi việc'])->default('Đang công tác');
             $table->enum('shift', ['Sáng', 'Chiều', 'Tối'])->default('Sáng');
             $table->integer('admin_id')->unsigned();
             $table->foreign('admin_id')->references('id')->on('admins');
