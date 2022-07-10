@@ -15,8 +15,8 @@ use App\Constants\SubjectConstant;
 
 class StudentController extends Controller
 {
-    const TITLE = TitleConstant::TITLE_STUDENT;
-    const SUBJECT = SubjectConstant::SUBJECT_STUDENT;
+    const TITLE = TitleConstant::STUDENT;
+    const SUBJECT = SubjectConstant::STUDENT;
 
     protected $title;
     protected $subject;
@@ -34,7 +34,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with('classroom')->orderBy('id', 'asc')->get();
+        $students = Student::with('classroom')->latest('id')->get();
         return view('students.index', [
             'students' => $students,
             'title' => $this->title,

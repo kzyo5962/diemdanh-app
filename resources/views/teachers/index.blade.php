@@ -1,62 +1,54 @@
 @extends('layout.main')
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-3 text-gray-800">Quản lý học viên</h1>
-        <a class="btn btn-success mb-4" href="{{ route('students.create') }}">
+        <h1 class="h3 mb-3 text-gray-800">{{ $title }}</h1>
+        <a class="btn btn-success mb-4" href="{{ route('teachers.create') }}">
             <span class="icon text-white-100"><i class="fas fa-plus"></i></span>
-            Tạo học viên mới
-        </a>
-        <a class="btn btn-success mb-4" href="{{ route('students.export') }}">
-            <span class="icon text-white-100"><i class="fas fa-table"></i></span>
-            Xuất file điểm danh
+            Tạo {{ $subject }} mới
         </a>
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Họ tên</th>
-                                <th>Ngày sinh</th>
                                 <th>SĐT</th>
                                 <th>Email</th>
                                 <th>Trạng thái</th>
-                                <th>Lớp học</th>
+                                <th>Giáo vụ quản lý</th>
                                 <th>Công cụ</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach ($students as $student)
+                            @foreach ($teachers as $teacher)
                                 <tr>
-                                    <td>{{ $student->id }}</td>
-                                    <td>{{ $student->fullName }}</td>
-                                    <td>{{ $student->birthDt }}</td>
-                                    <td>{{ $student->phoneNumber }}</td>
-                                    <td>{{ $student->email }}</td>
+                                    <td>{{ $teacher->id }}</td>
+                                    <td>{{ $teacher->fullName }}</td>
+                                    <td>{{ $teacher->phoneNumber }}</td>
+                                    <td>{{ $teacher->email }}</td>
                                     <td>
-                                        @if ($student->status == 'Đang theo học')
-                                            <div class="btn btn-info">{{ $student->status }}</div>
-                                        @elseif ($student->status == 'Đình chỉ')
-                                            <div class="btn btn-warning">{{ $student->status }}</div>
+                                        @if ($teacher->status == 'Đang công tác')
+                                            <div class="btn btn-info">{{ $teacher->status }}</div>
+                                        @elseif ($teacher->status == 'Đình chỉ')
+                                            <div class="btn btn-warning">{{ $teacher->status }}</div>
+                                        @elseif ($teacher->status == 'Vắng')
+                                            <div class="btn btn-secondary">{{ $teacher->status }}</div>
                                         @else
-                                            <div class="btn btn-danger">{{ $student->status }}</div>
+                                            <div class="btn btn-danger">{{ $teacher->status }}</div>
                                         @endif
                                     </td>
-                                    <td>{{ $student->classroom->name }}</td>
+                                    <td>{{ $teacher->supervisor->fullName }}</td>
                                     <td>
-                                        <a href="" data-toggle="tooltip" title="Cảnh báo đình chỉ"
-                                            class="btn btn-warning"><i class="fas fas fa-exclamation-triangle"></i></a>
-                                        <a href="" data-toggle="tooltip" title="Quyết định thôi học"
-                                            class="btn btn-secondary"><i class="fas fas fa-minus-circle"></i></a>
-                                        <a href="{{ route('students.edit', ['student' => $student]) }}"
+                                        <a href="{{ route('teachers.edit', ['teacher' => $teacher]) }}"
                                             data-toggle="tooltip" title="Chỉnh sửa" class="btn btn-primary"><i
                                                 class="fas fa-pen"></i></a>
-                                        <a href="#" data-toggle="modal" data-target="#deletedStudentModal"
-                                            data-toggle="tooltip" title="Xóa {{ $student->id }}"
+                                        <a href="#" data-toggle="modal" data-target="#deletedteacherModal"
+                                            data-toggle="tooltip" title="Xóa {{ $teacher->id }}"
                                             class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                        @include('students.delete-modal')
+                                        @include('teachers.delete-modal')
                                     </td>
                                 </tr>
                             @endforeach

@@ -53,7 +53,8 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail): void {
     $trail->push('Dashboard', route('dashboard'));
 });
 
-Breadcrumbs::resource('students', TitleConstant::TITLE_STUDENT, SubjectConstant::SUBJECT_STUDENT);
-Breadcrumbs::resource('classrooms', TitleConstant::TITLE_CLASSROOM, SubjectConstant::SUBJECT_CLASSROOM);
-Breadcrumbs::resource('admin', TitleConstant::TITLE_ADMIN, SubjectConstant::SUBJECT_ADMIN);
-Breadcrumbs::resource('roles', TitleConstant::TITLE_ROLES, SubjectConstant::SUBJECT_ROLE);
+Breadcrumbs::resource('students', TitleConstant::STUDENT, SubjectConstant::STUDENT);
+Breadcrumbs::resource('classrooms', TitleConstant::CLASSROOM, SubjectConstant::CLASSROOM);
+Breadcrumbs::resource('admin', TitleConstant::ADMIN, SubjectConstant::ADMIN);
+Breadcrumbs::resource('roles', TitleConstant::ROLE, SubjectConstant::ROLE);
+Breadcrumbs::resource('teachers', TitleConstant::TEACHER, SubjectConstant::TEACHER);

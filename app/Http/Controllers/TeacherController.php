@@ -2,83 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\SubjectConstant;
+use App\Constants\TitleConstant;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Models\Supervisor;
+use Brian2694\Toastr\Facades\Toastr;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    const TITLE = TitleConstant::TEACHER;
+    const SUBJECT = SubjectConstant::TEACHER;
+
+    protected $title;
+    protected $subject;
+
+    public function __construct()
+    {
+        $this->title = self::TITLE;
+        $this->subject = self::SUBJECT;
+    }
+
     public function index()
     {
-        //
+        $teachers = Teacher::with('supervisor')->latest('id')->get();
+        return view('teachers.index', [
+            'teachers' => $teachers,
+            'title' => $this->title,
+            'subject' => $this->subject
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $supervisors = Supervisor::select(['id', 'fullName'])->get();
+        return view('teachers.create', [
+            'supervisors' => $supervisors,
+            'subject' => $this->subject,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTeacherRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        Teacher::create($request->expect(['_token']));
+        Toastr::success('Tạo ' . $this->subject . ' mới thành công', 'Success');
+        return redirect()->route('teachers.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function show(Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTeacherRequest  $request
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Teacher $teacher)
     {
         //

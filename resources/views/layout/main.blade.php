@@ -25,13 +25,12 @@
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
+        <div id="preloaders" class="preloader"></div>
 
         @include('layout.sidebar')
 
@@ -84,6 +83,11 @@
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
     @stack('scripts')
+    <script>
+        $(document).ready(function() {
+            $(".preloader").fadeOut('slow');
+        });
+    </script>
 </body>
 
 </html>
