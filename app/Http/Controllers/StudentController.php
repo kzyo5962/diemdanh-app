@@ -93,7 +93,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        $classrooms = Classroom::all();
+        $classrooms = Classroom::select(['id', 'name'])->get();
         return view('students.edit', [
             'student' => $student,
             'classrooms' => $classrooms,
@@ -129,7 +129,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $message = "Xóa học viên $student->fullName thành công";
+        $message = "Xóa $this->subject $student->fullName thành công";
         $student->delete();
         Toastr::success($message, 'Success');
         return redirect()->route('students.index');

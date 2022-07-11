@@ -4,11 +4,7 @@
         <div class="card o-hidden border-0 shadow-lg my-4">
             <div class="card-body p-0">
                 <div class="p-5">
-                    <h1 class="h3 mb-3 text-gray-800">Thêm
-                        @if ($subject)
-                            {{ $subject }}
-                        @endif
-                    </h1>
+                    <h1 class="h3 mb-3 text-gray-800">Thêm {{ $subject }}</h1>
 
                     <form class="user" method="POST" action="{{ route('students.store') }}">
                         @csrf

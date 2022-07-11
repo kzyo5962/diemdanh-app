@@ -45,28 +45,39 @@ class TeacherController extends Controller
 
     public function store(StoreTeacherRequest $request)
     {
-        Teacher::create($request->expect(['_token']));
+        Teacher::create($request->except(['_token']));
         Toastr::success('Tạo ' . $this->subject . ' mới thành công', 'Success');
         return redirect()->route('teachers.index');
     }
 
     public function show(Teacher $teacher)
     {
-        //
+        return $teacher;
     }
 
     public function edit(Teacher $teacher)
     {
-        //
+        $supervisors = Supervisor::select(['id', 'fullName'])->get();
+        return view('teachers.edit', [
+            'teacher' => $teacher,
+            'supervisors' => $supervisors,
+            'subject' => $this->subject,
+        ]);
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $teacher->update($request->except(['_token', '_method']));
+        $message = "Cập nhật $this->subject mới thành công";
+        Toastr::success($message, 'Success');
+        return redirect()->route('teachers.index');
     }
 
     public function destroy(Teacher $teacher)
     {
-        //
+        $message = "Xóa $this->subject $teacher->fullName thành công";
+        $teacher->delete();
+        Toastr::success($message, 'Success');
+        return redirect()->route('teachers.index');
     }
 }
