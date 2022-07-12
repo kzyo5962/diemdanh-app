@@ -38,6 +38,7 @@ class StudentController extends Controller
         return view('students.index', [
             'students' => $students,
             'title' => $this->title,
+            'subject' => $this->subject,
         ]);
     }
 

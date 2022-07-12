@@ -2,83 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\SubjectConstant;
+use App\Constants\TitleConstant;
 use App\Models\Classroom;
 use App\Http\Requests\StoreClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
 
 class ClassroomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    const TITLE = TitleConstant::CLASSROOM;
+    const SUBJECT = SubjectConstant::CLASSROOM;
+
+    protected $title;
+    protected $subject;
+
+    public function __construct()
     {
-        return view('classrooms.index');
+        $this->title = self::TITLE;
+        $this->subject = self::SUBJECT;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $classrooms = Classroom::latest('id')->get();
+        return view('classrooms.index', [
+            'classrooms' => $classrooms,
+            'title' => $this->title,
+            'subject' => $this->subject,
+        ]);
+    }
+
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreClassroomRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreClassroomRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Classroom  $classroom
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Classroom $classroom)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Classroom  $classroom
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Classroom $classroom)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateClassroomRequest  $request
-     * @param  \App\Models\Classroom  $classroom
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateClassroomRequest $request, Classroom $classroom)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Classroom  $classroom
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Classroom $classroom)
     {
         //
