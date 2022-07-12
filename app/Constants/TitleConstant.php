@@ -9,4 +9,5 @@ final class TitleConstant
     public const ADMIN = 'Quản lý Admin';
     public const ROLE = 'Quản lý vai trò';
     public const TEACHER = 'Quản lý giảng viên';
+    public const SUPERVISOR = 'Quản lý giáo vụ';
 }

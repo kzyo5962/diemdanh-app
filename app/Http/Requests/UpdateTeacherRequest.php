@@ -28,6 +28,7 @@ class UpdateTeacherRequest extends FormRequest
             'email' => 'required|email',
             'phoneNumber' => 'required|numeric',
             'supervisor_id' => 'required',
+            'status' => 'required',
         ];
     }
 
@@ -43,6 +44,8 @@ class UpdateTeacherRequest extends FormRequest
             'phoneNumber.numeric' => 'SĐT sai định dạng.',
 
             'supervisor_id.required' => 'Vui lòng chọn giáo vụ quản lý.',
+
+            'status.required' => 'Vui lòng chọn tình trạng.',
         ];
     }
 }

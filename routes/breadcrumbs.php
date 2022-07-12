@@ -58,3 +58,4 @@ Breadcrumbs::resource('classrooms', TitleConstant::CLASSROOM, SubjectConstant::C
 Breadcrumbs::resource('admin', TitleConstant::ADMIN, SubjectConstant::ADMIN);
 Breadcrumbs::resource('roles', TitleConstant::ROLE, SubjectConstant::ROLE);
 Breadcrumbs::resource('teachers', TitleConstant::TEACHER, SubjectConstant::TEACHER);
+Breadcrumbs::resource('supervisors', TitleConstant::SUPERVISOR, SubjectConstant::SUPERVISOR);

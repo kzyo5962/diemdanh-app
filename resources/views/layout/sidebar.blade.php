@@ -50,7 +50,7 @@ const STUDENT = 4;
     @endauth
     <li class="nav-item">
         <a class="nav-link" href="{{ route('classrooms.index') }}">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-door-open"></i>
             <span>Lớp học</span></a>
     </li>
 
@@ -61,14 +61,28 @@ const STUDENT = 4;
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('students.index') }}">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fa fa-vcard-o"></i>
             <span>Học viên</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('students.index') }}">
-            <i class="fa-solid fa-calendar-check"></i>
+            <i class="fas fa-calendar-check"></i>
             <span>Điểm danh</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('supervisors.index') }}">
+            <i class="fa-solid fas fa-fw fa-users"></i>
+            <span>Giáo vụ</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('students.index') }}">
+            <i class="fas fa-book-open"></i>
+            <span>Môn học</span>
         </a>
     </li>
 

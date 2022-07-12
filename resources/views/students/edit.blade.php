@@ -77,7 +77,7 @@
                                     <label class="text-dark required" for="status">Tình trạng</label>
                                     <select id="status" class="form-control" name="status">
 
-                                        @foreach (config('enum.status') as $key => $value)
+                                        @foreach (config('enum.student.status') as $key => $value)
                                             <option value="{{ $value }}"
                                                 {{ $student->status == $value ? 'selected' : '' }}>
                                                 {{ $value }}</option>

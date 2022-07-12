@@ -13,7 +13,7 @@ class StoreSupervisorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,26 @@ class StoreSupervisorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fullName' => 'required',
+            'email' => 'required|email|unique:students',
+            'phoneNumber' => 'required|numeric',
+            'admin_id' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'fullName.required' => 'Họ tên không được phép để trống.',
+
+            'email.required' => 'Email không được phép để trống.',
+            'email.email' => 'Email sai định dạng.',
+            'email.unique' => 'Email đã tồn tại.',
+
+            'phoneNumber.required' => 'SĐT không được phép để trống.',
+            'phoneNumber.numeric' => 'SĐT sai định dạng.',
+
+            'supervisor_id.required' => 'Vui lòng chọn giáo vụ quản lý.',
         ];
     }
 }

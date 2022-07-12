@@ -9,4 +9,5 @@ final class SubjectConstant
     public const ADMIN = 'Admin';
     public const ROLE = 'Vai trò';
     public const TEACHER = 'Giảng viên';
+    public const SUPERVISOR = 'Giáo vụ';
 }

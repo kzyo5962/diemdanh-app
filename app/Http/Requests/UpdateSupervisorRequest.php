@@ -24,7 +24,7 @@ class UpdateSupervisorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            
         ];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -33,5 +34,6 @@ Route::middleware(['prevent.back.history'])->group(function () {
         Route::resource('/teachers', TeacherController::class);
         Route::resource('/admin', AdminController::class)->middleware('admin');
         Route::resource('/roles', RoleController::class);
+        Route::resource('/supervisors', SupervisorController::class);
     });
 });

@@ -2,85 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\SubjectConstant;
+use App\Constants\TitleConstant;
 use App\Models\Supervisor;
 use App\Http\Requests\StoreSupervisorRequest;
 use App\Http\Requests\UpdateSupervisorRequest;
+use App\Models\Admin;
+use Brian2694\Toastr\Facades\Toastr;
 
 class SupervisorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    const TITLE = TitleConstant::SUPERVISOR;
+    const SUBJECT = SubjectConstant::SUPERVISOR;
+
+    protected $title;
+    protected $subject;
+
+    public function __construct()
+    {
+        $this->title = self::TITLE;
+        $this->subject = self::SUBJECT;
+    }
+
     public function index()
     {
-        //
+        $supervisors = Supervisor::with('admin')->latest('id')->get();
+        return view('supervisors.index', [
+            'supervisors' => $supervisors,
+            'title' => $this->title,
+            'subject' => $this->subject
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $admins = Admin::select(['id', 'fullName'])->get();
+        return view('supervisors.create', [
+            'admins' => $admins,
+            'subject' => $this->subject,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSupervisorRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreSupervisorRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Supervisor  $supervisor
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Supervisor $supervisor)
     {
-        //
+        return $supervisor;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Supervisor  $supervisor
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Supervisor $supervisor)
     {
-        //
+        $admins = Admin::select(['id', 'fullName'])->get();
+        return view('supervisors.edit', [
+            'supervisor' => $supervisor,
+            'admins' => $admins,
+            'subject' => $this->subject,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateSupervisorRequest  $request
-     * @param  \App\Models\Supervisor  $supervisor
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateSupervisorRequest $request, Supervisor $supervisor)
     {
-        //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Supervisor  $supervisor
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Supervisor $supervisor)
     {
-        //
+        $message = "Xóa $this->subject $supervisor->fullName thành công";
+        $supervisor->delete();
+        Toastr::success($message, 'Success');
+        return redirect()->route('supervisors.index');
     }
 }
